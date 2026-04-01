@@ -2,6 +2,7 @@
 
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -47,10 +48,9 @@ export function Sidebar() {
       {/* Logo */}
       <div className="flex items-center gap-3 px-4 py-4 border-b border-[#2A3348] h-14 flex-shrink-0">
         <div
-          className="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center font-bold text-[#0A0B0E] text-base"
-          style={{ background: 'linear-gradient(135deg, #00D4A0, #4F8EF7)' }}
+          className="w-8 h-8 flex-shrink-0 flex items-center justify-center"
         >
-          R
+          <Image src="/logo.png" alt="logo" width={24} height={24} />
         </div>
         <AnimatePresence>
           {!sidebarCollapsed && (
