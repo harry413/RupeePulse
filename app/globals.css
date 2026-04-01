@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base resets ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  color-scheme: dark;
+
+  /* Core palette */
+  --bg-primary:   #0A0B0E;
+  --bg-secondary: #111318;
+  --bg-tertiary:  #161A22;
+  --bg-card:      #1E2433;
+  --bg-hover:     #252D3D;
+  --bg-active:    #2D3650;
+
+  /* Brand colors */
+  --green:        #00D4A0;
+  --green-dark:   #00A87D;
+  --green-muted:  rgba(0,212,160,0.1);
+  --blue:         #4F8EF7;
+  --blue-dark:    #2D6FD9;
+  --blue-muted:   rgba(79,142,247,0.1);
+  --red:          #FF4757;
+  --red-dark:     #CC3344;
+  --red-muted:    rgba(255,71,87,0.1);
+  --amber:        #FFB547;
+  --purple:       #A78BFA;
+  --gold:         #F5A623;
+
+  /* Borders */
+  --border:       #2A3348;
+  --border-2:     #3A4660;
+
+  /* Text */
+  --text:         #E8EBF2;
+  --text-2:       #9BA5BF;
+  --text-3:       #5C6882;
+
+  /* Layout */
+  --sidebar-w:    220px;
+  --topbar-h:     56px;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg-primary);
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#__next { height: 100%; }
+
+/* ── Scrollbars ──────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 4px; height: 4px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: var(--border-2); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-3); }
+
+/* ── Focus ring ──────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* ── Selection ───────────────────────────────────────────── */
+::selection {
+  background: rgba(79, 142, 247, 0.25);
+  color: var(--text);
+}
+
+/* ── Base input resets ────────────────────────────────────── */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] { -moz-appearance: textfield; }
+
+/* ── Utility classes ──────────────────────────────────────── */
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+
+.text-up   { color: var(--green); }
+.text-down { color: var(--red); }
+
+.bg-card   { background: var(--bg-card); }
+.bg-hover  { background: var(--bg-hover); }
+
+.border-base { border: 1px solid var(--border); }
+.border-2    { border: 1px solid var(--border-2); }
+
+.rounded-card { border-radius: 12px; }
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #00D4A0, #4F8EF7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Card component base ─────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+/* ── Ticker animation ────────────────────────────────────── */
+.ticker-strip {
+  -webkit-mask-image: linear-gradient(
+    90deg, transparent, black 5%, black 95%, transparent
+  );
+  mask-image: linear-gradient(
+    90deg, transparent, black 5%, black 95%, transparent
+  );
+}
+
+.ticker-inner {
+  display: flex;
+  gap: 24px;
+  animation: scroll-ticker 35s linear infinite;
+  width: max-content;
+}
+
+@keyframes scroll-ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Shimmer skeleton ────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-hover) 25%,
+    var(--bg-active) 50%,
+    var(--bg-hover) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* ── Lightweight Charts dark overrides ───────────────────── */
+.tv-lightweight-charts {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* ── Green pulse badge ───────────────────────────────────── */
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: live-pulse 2s ease-in-out infinite;
+}
+
+@keyframes live-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,212,160,0); }
+  50%       { box-shadow: 0 0 0 4px rgba(0,212,160,0.25); }
+}
+
+/* ── Page transition ─────────────────────────────────────── */
+.page-enter {
+  animation: page-fade-in 0.2s ease;
+}
+
+@keyframes page-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Change pill ─────────────────────────────────────────── */
+.change-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.change-pill.up   { background: var(--green-muted); color: var(--green); }
+.change-pill.down { background: var(--red-muted);   color: var(--red); }
+
+/* ── Percent bar ─────────────────────────────────────────── */
+.pct-bar { height: 3px; background: var(--bg-hover); border-radius: 2px; }
+.pct-fill { height: 100%; border-radius: 2px; transition: width 0.8s ease; }
