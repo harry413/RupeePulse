@@ -45,12 +45,14 @@ export function CandleChart({ symbol, height = 300, className, showToolbar = tru
           wickUpColor: '#00A87D', wickDownColor: '#CC3344',
         });
         const volSeries = chart.addHistogramSeries({
-          priceFormat: { type: 'volume' }, priceScaleId: '',
+          priceFormat: { type: 'volume' }, priceScaleId: 'volume',
+        });
+        chart.priceScale('volume').applyOptions({
           scaleMargins: { top: 0.85, bottom: 0 },
         });
         const base = prices[symbol]?.price ?? INITIAL_PRICES[symbol] ?? 1000;
         const candles = mockCandleData(base, 90);
-        candleSeries.setData(candles);
+        candleSeries.setData(candles.map((c: any) => ({ ...c, time: Math.floor(c.time) as any })));
         volSeries.setData(candles.map((c: any) => ({ time: c.time, value: c.volume, color: c.close >= c.open ? 'rgba(0,212,160,0.3)' : 'rgba(255,71,87,0.3)' })));
         chart.timeScale().fitContent();
         chartRef.current = chart;
@@ -70,7 +72,7 @@ export function CandleChart({ symbol, height = 300, className, showToolbar = tru
     const base = prices[symbol]?.price ?? INITIAL_PRICES[symbol] ?? 1000;
     const tf = TIMEFRAMES.find((t) => t.value === activeTimeframe);
     const candles = mockCandleData(base, tf?.candles ?? 90);
-    seriesRef.current.setData(candles);
+    seriesRef.current.setData(candles.map((c: any) => ({ ...c, time: Math.floor(c.time) as any })));
     chartRef.current?.timeScale().fitContent();
   }, [activeTimeframe, symbol]);
 
