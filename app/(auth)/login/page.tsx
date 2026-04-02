@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -55,11 +56,10 @@ export default function LoginPage() {
       >
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-4"
-            style={{ background: 'linear-gradient(135deg, #00D4A0, #4F8EF7)' }}>
-            <span className="text-2xl font-bold text-[#0A0B0E]">R</span>
-          </div>
-          <h1 className="text-2xl font-bold tracking-tight">Welcome to RupeePulse</h1>
+          <div className="w-24 h-24 inline-flex items-center justify-center">
+                <Image src="/logo main.png" alt="logo" width={100} height={80} />
+            </div>
+          <h1 className="text-2xl font-bold tracking-tight">Welcome to Rupee<span className="text-[#00D4A0]">Pulse</span></h1>
           <p className="text-[#9BA5BF] mt-1 text-sm">Sign in to your trading account</p>
         </div>
 

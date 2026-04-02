@@ -2,6 +2,7 @@
 
 'use client';
 
+import Image from "next/image";
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -82,9 +83,8 @@ export default function SignupPage() {
       >
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-4"
-            style={{ background: 'linear-gradient(135deg, #00D4A0, #4F8EF7)' }}>
-            <span className="text-2xl font-bold text-[#0A0B0E]">R</span>
+          <div className="w-24 h-24 inline-flex items-center justify-center">
+                <Image src="/logo main.png" alt="logo" width={100} height={80} />
           </div>
           <h1 className="text-2xl font-bold tracking-tight">Create your account</h1>
           <p className="text-[#9BA5BF] mt-1 text-sm">Start trading with ₹10,00,000 demo balance</p>
@@ -95,7 +95,7 @@ export default function SignupPage() {
             <div>
               <label className="block text-xs font-semibold text-[#5C6882] uppercase tracking-wider mb-2">Full Name</label>
               <input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })}
-                placeholder="Aryan Kumar" autoComplete="name"
+                placeholder="Your Full Name" autoComplete="name"
                 className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all
                   bg-[#111318] border border-[#2A3348] text-[#E8EBF2] placeholder-[#5C6882]
                   focus:border-[#4F8EF7] focus:ring-1 focus:ring-[#4F8EF7]/20" />
@@ -137,7 +137,7 @@ export default function SignupPage() {
             <div>
               <label className="block text-xs font-semibold text-[#5C6882] uppercase tracking-wider mb-2">Confirm Password</label>
               <input type="password" value={form.confirm} onChange={(e) => setForm({ ...form, confirm: e.target.value })}
-                placeholder="Repeat password"
+                placeholder="Re-enter password"
                 className={`w-full px-4 py-3 rounded-xl text-sm outline-none transition-all
                   bg-[#111318] border text-[#E8EBF2] placeholder-[#5C6882]
                   focus:ring-1 focus:ring-[#4F8EF7]/20

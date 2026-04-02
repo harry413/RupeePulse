@@ -2,7 +2,6 @@
 
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -47,11 +46,6 @@ export function Sidebar() {
     >
       {/* Logo */}
       <div className="flex items-center gap-3 px-4 py-4 border-b border-[#2A3348] h-14 flex-shrink-0">
-        <div
-          className="w-8 h-8 flex-shrink-0 flex items-center justify-center"
-        >
-          <Image src="/logo.png" alt="logo" width={24} height={24} />
-        </div>
         <AnimatePresence>
           {!sidebarCollapsed && (
             <motion.span
@@ -59,7 +53,7 @@ export function Sidebar() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -8 }}
               transition={{ duration: 0.18 }}
-              className="font-bold text-base tracking-tight whitespace-nowrap"
+              className="font-bold text-base tracking-tight whitespace-nowrap text-xl"
             >
               Rupee<span className="text-[#00D4A0]">Pulse</span>
             </motion.span>
